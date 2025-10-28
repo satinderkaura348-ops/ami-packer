@@ -18,10 +18,10 @@ jobs:
           version: 1.11.2
 
       - name: Validate template
-        run: packer validate ./templates/ubuntu.pkr.hcl
+        run: packer validate ./aws-ubuntu.pkr.hcl
 
       - name: Build AMI
-        run: packer build ./templates/ubuntu.pkr.hcl
+        run: packer build ./aws-ubuntu.pkr.hcl
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
