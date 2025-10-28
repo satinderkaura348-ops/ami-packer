@@ -11,6 +11,7 @@ source "amazon-ebs" "ubuntu" {
   ami_name      = "learn-packer-linux-aws-ubuntutest"
   instance_type = "t2.micro"
   region        = "ap-southeast-2"
+  associate_public_ip_address = true
   source_ami_filter {
     filters = {
       name                = "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
