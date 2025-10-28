@@ -1,1 +1,27 @@
 
+name: Build AMI with Packer
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  packer-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Packer
+        uses: hashicorp/setup-packer@v3
+        with:
+          version: 1.11.2
+
+      - name: Validate template
+        run: packer validate ./templates/ubuntu.pkr.hcl
+
+      - name: Build AMI
+        run: packer build ./templates/ubuntu.pkr.hcl
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
