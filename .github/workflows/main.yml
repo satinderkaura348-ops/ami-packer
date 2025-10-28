@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Initialize packer
-        run: packer init
+        run: packer init ./aws-ubuntu.pkr.hcl
 
       - name: Setup Packer
         uses: hashicorp/setup-packer@v3
